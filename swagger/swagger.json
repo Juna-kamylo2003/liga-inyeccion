@@ -1,0 +1,1343 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ligas API",
+    "version": "1.0.0",
+    "description": "API para gestión de ligas, equipos, jugadores, partidos y resultados."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/equipos": {
+      "get": {
+        "summary": "Obtiene todos los equipos",
+        "tags": [
+          "Equipos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de equipos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo equipo",
+        "tags": [
+          "Equipos"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Equipo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Equipo creado"
+          }
+        }
+      }
+    },
+    "/equipos/{id}": {
+      "get": {
+        "summary": "Obtiene un equipo por ID",
+        "tags": [
+          "Equipos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Equipo encontrado"
+          },
+          "404": {
+            "description": "Equipo no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un equipo",
+        "tags": [
+          "Equipos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Equipo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Equipo actualizado"
+          },
+          "404": {
+            "description": "Equipo no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un equipo",
+        "tags": [
+          "Equipos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Equipo eliminado"
+          },
+          "404": {
+            "description": "Equipo no encontrado"
+          }
+        }
+      }
+    },
+    "/jugadores": {
+      "get": {
+        "summary": "Obtiene todos los jugadores",
+        "tags": [
+          "Jugadores"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de jugadores"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo jugador",
+        "tags": [
+          "Jugadores"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jugador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Jugador creado"
+          }
+        }
+      }
+    },
+    "/jugadores/{id}": {
+      "get": {
+        "summary": "Obtiene un jugador por ID",
+        "tags": [
+          "Jugadores"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jugador encontrado"
+          },
+          "404": {
+            "description": "Jugador no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un jugador",
+        "tags": [
+          "Jugadores"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Jugador"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Jugador actualizado"
+          },
+          "404": {
+            "description": "Jugador no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un jugador",
+        "tags": [
+          "Jugadores"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Jugador eliminado"
+          },
+          "404": {
+            "description": "Jugador no encontrado"
+          }
+        }
+      }
+    },
+    "/ligas": {
+      "get": {
+        "summary": "Obtiene todas las ligas",
+        "tags": [
+          "Ligas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de ligas"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea una nueva liga",
+        "tags": [
+          "Ligas"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Liga"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Liga creada"
+          }
+        }
+      }
+    },
+    "/ligas/{id}": {
+      "get": {
+        "summary": "Obtiene una liga por ID",
+        "tags": [
+          "Ligas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liga encontrada"
+          },
+          "404": {
+            "description": "Liga no encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza una liga",
+        "tags": [
+          "Ligas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Liga"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Liga actualizada"
+          },
+          "404": {
+            "description": "Liga no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una liga",
+        "tags": [
+          "Ligas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liga eliminada"
+          },
+          "404": {
+            "description": "Liga no encontrada"
+          }
+        }
+      }
+    },
+    "/partidos": {
+      "get": {
+        "summary": "Obtiene todos los partidos",
+        "tags": [
+          "Partidos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de partidos"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo partido",
+        "tags": [
+          "Partidos"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Partido creado"
+          }
+        }
+      }
+    },
+    "/partidos/{id}": {
+      "get": {
+        "summary": "Obtiene un partido por ID",
+        "tags": [
+          "Partidos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Partido encontrado"
+          },
+          "404": {
+            "description": "Partido no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un partido",
+        "tags": [
+          "Partidos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Partido"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Partido actualizado"
+          },
+          "404": {
+            "description": "Partido no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un partido",
+        "tags": [
+          "Partidos"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Partido eliminado"
+          },
+          "404": {
+            "description": "Partido no encontrado"
+          }
+        }
+      }
+    },
+    "/resultados": {
+      "get": {
+        "summary": "Obtiene todos los resultados",
+        "tags": [
+          "Resultados"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de resultados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Resultado"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo resultado",
+        "tags": [
+          "Resultados"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Resultado"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Resultado creado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resultado"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resultados/{id}": {
+      "get": {
+        "summary": "Obtiene un resultado por ID",
+        "tags": [
+          "Resultados"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del resultado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultado encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resultado"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resultado no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un resultado por ID",
+        "tags": [
+          "Resultados"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del resultado"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Resultado"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Resultado actualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resultado"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resultado no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un resultado por ID",
+        "tags": [
+          "Resultados"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del resultado"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Resultado eliminado"
+          },
+          "404": {
+            "description": "Resultado no encontrado"
+          }
+        }
+      }
+    },
+    "/tabla-posiciones": {
+      "get": {
+        "summary": "Obtener todas las posiciones",
+        "tags": [
+          "TablaPosicione"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de posiciones",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TablaPosicione"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear una posición",
+        "tags": [
+          "TablaPosicione"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TablaPosicione"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Posición creada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TablaPosicione"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tabla-posiciones/{id}": {
+      "get": {
+        "summary": "Obtener una posición por ID",
+        "tags": [
+          "TablaPosicione"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID de la posición"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Una posición",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TablaPosicione"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una posición",
+        "tags": [
+          "TablaPosicione"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID de la posición"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TablaPosicione"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Posición actualizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TablaPosicione"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una posición",
+        "tags": [
+          "TablaPosicione"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID de la posición"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Posición eliminada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No encontrado"
+          },
+          "500": {
+            "description": "Error interno del servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Error al eliminar la posición"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/temporadas": {
+      "get": {
+        "summary": "Obtiene todas las temporadas",
+        "tags": [
+          "Temporadas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de temporadas"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea una nueva temporada",
+        "tags": [
+          "Temporadas"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Temporada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Temporada creada"
+          }
+        }
+      }
+    },
+    "/temporadas/{id}": {
+      "get": {
+        "summary": "Obtiene una temporada por ID",
+        "tags": [
+          "Temporadas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temporada encontrada"
+          },
+          "404": {
+            "description": "Temporada no encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza una temporada",
+        "tags": [
+          "Temporadas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Temporada"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Temporada actualizada"
+          },
+          "404": {
+            "description": "Temporada no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina una temporada",
+        "tags": [
+          "Temporadas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temporada eliminada"
+          },
+          "404": {
+            "description": "Temporada no encontrada"
+          }
+        }
+      }
+    },
+    "/usuarios": {
+      "get": {
+        "summary": "Obtiene todos los usuarios",
+        "tags": [
+          "Usuarios"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de usuarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Usuario"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo usuario",
+        "tags": [
+          "Usuarios"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuario creado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/usuarios/{id}": {
+      "get": {
+        "summary": "Obtiene un usuario por ID",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del usuario"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un usuario por ID",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del usuario"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario actualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un usuario por ID",
+        "tags": [
+          "Usuarios"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "ID del usuario"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Usuario eliminado"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Equipo": {
+        "type": "object",
+        "required": [
+          "nombre",
+          "ciudad",
+          "temporada_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "ciudad": {
+            "type": "string"
+          },
+          "temporada_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "Jugador": {
+        "type": "object",
+        "required": [
+          "nombre",
+          "posicion",
+          "edad",
+          "equipo_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "posicion": {
+            "type": "string"
+          },
+          "edad": {
+            "type": "integer"
+          },
+          "equipo_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "Liga": {
+        "type": "object",
+        "required": [
+          "nombre",
+          "pais"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "pais": {
+            "type": "string"
+          },
+          "creada_en": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Partido": {
+        "type": "object",
+        "required": [
+          "fecha",
+          "equipo_local",
+          "equipo_visitante",
+          "temporada_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date"
+          },
+          "equipo_local": {
+            "type": "integer"
+          },
+          "equipo_visitante": {
+            "type": "integer"
+          },
+          "temporada_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "Resultado": {
+        "type": "object",
+        "required": [
+          "id",
+          "partidoId",
+          "equipoId",
+          "goles"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID del resultado"
+          },
+          "partidoId": {
+            "type": "integer",
+            "description": "ID del partido"
+          },
+          "equipoId": {
+            "type": "integer",
+            "description": "ID del equipo"
+          },
+          "goles": {
+            "type": "integer",
+            "description": "Goles anotados"
+          }
+        },
+        "example": {
+          "id": 1,
+          "partidoId": 1,
+          "equipoId": 2,
+          "goles": 3
+        }
+      },
+      "TablaPosicione": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "temporada_id": {
+            "type": "integer"
+          },
+          "equipo_id": {
+            "type": "integer"
+          },
+          "puntos": {
+            "type": "integer"
+          },
+          "goles_a_favor": {
+            "type": "integer"
+          },
+          "goles_en_contra": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "temporada_id",
+          "equipo_id"
+        ]
+      },
+      "Temporada": {
+        "type": "object",
+        "required": [
+          "anio",
+          "liga_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "anio": {
+            "type": "integer"
+          },
+          "liga_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "Usuario": {
+        "type": "object",
+        "required": [
+          "id",
+          "nombre",
+          "email",
+          "password"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID del usuario"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre del usuario"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email del usuario"
+          },
+          "password": {
+            "type": "string",
+            "description": "Contraseña (hash)"
+          }
+        },
+        "example": {
+          "id": 1,
+          "nombre": "Juan Perez",
+          "email": "juan@example.com",
+          "password": "$2b$10$abc123..."
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Equipos",
+      "description": "Gestión de equipos"
+    },
+    {
+      "name": "Jugadores",
+      "description": "Gestión de jugadores"
+    },
+    {
+      "name": "Ligas",
+      "description": "Gestión de ligas"
+    },
+    {
+      "name": "Partidos",
+      "description": "Gestión de partidos"
+    },
+    {
+      "name": "Resultados",
+      "description": "Endpoints para gestionar resultados"
+    },
+    {
+      "name": "Temporadas",
+      "description": "Gestión de temporadas"
+    },
+    {
+      "name": "Usuario",
+      "description": "Endpoints para gestionar usuarios"
+    },
+    {
+      "name": "Usuarios",
+      "description": "Endpoints para gestionar usuarios"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1758560585102" clover="3.2.0">
-  <project timestamp="1758560585102" name="All files">
-    <metrics statements="397" coveredstatements="268" conditionals="90" coveredconditionals="23" methods="167" coveredmethods="115" elements="654" coveredelements="406" complexity="0" loc="397" ncloc="397" packages="4" files="33" classes="33"/>
+<coverage generated="1758561356610" clover="3.2.0">
+  <project timestamp="1758561356611" name="All files">
+    <metrics statements="407" coveredstatements="269" conditionals="90" coveredconditionals="23" methods="167" coveredmethods="115" elements="664" coveredelements="407" complexity="0" loc="407" ncloc="407" packages="4" files="33" classes="33"/>
     <package name="models">
       <metrics statements="71" coveredstatements="70" conditionals="10" coveredconditionals="7" methods="19" coveredmethods="19"/>
       <file name="equipo.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\models\equipo.js">
@@ -104,7 +104,7 @@
       </file>
     </package>
     <package name="src.controllers">
-      <metrics statements="170" coveredstatements="119" conditionals="48" coveredconditionals="15" methods="48" coveredmethods="36"/>
+      <metrics statements="180" coveredstatements="120" conditionals="48" coveredconditionals="15" methods="48" coveredmethods="36"/>
       <file name="equipo.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\equipo.controller.js">
         <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="6"/>
         <line num="3" count="1" type="stmt"/>
@@ -277,27 +277,37 @@
         <line num="35" count="1" type="stmt"/>
       </file>
       <file name="usuario.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\usuario.controller.js">
-        <metrics statements="20" coveredstatements="9" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <metrics statements="30" coveredstatements="10" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.repositories">

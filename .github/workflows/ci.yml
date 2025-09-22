@@ -50,23 +50,6 @@
               sleep 1
             done
 
-        - name: Debug database connection
-          run: |
-            echo "Testing database connection..."
-            mysql -h127.0.0.1 -P3306 -utest_user -ptest_password -e "SHOW DATABASES;"
-            echo "Environment variables:"
-            echo "DB_HOST: $DB_HOST"
-            echo "DB_NAME: $DB_NAME"
-            echo "DB_USERNAME: $DB_USERNAME"
-          env:
-            NODE_ENV: test
-            DB_HOST: 127.0.0.1
-            DB_PORT: 3306
-            DB_NAME: liga_test
-            DB_USERNAME: test_user
-            DB_PASSWORD: test_password
-            DB_DIALECT: mariadb
-
         - name: Run database migrations
           run: npx sequelize-cli db:migrate
           env:

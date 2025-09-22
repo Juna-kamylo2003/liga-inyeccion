@@ -61,6 +61,13 @@
             DB_PASSWORD: test_password
             DB_DIALECT: mariadb
 
+        - name: Check database tables
+          run: |
+            echo "Checking if tables were created..."
+            mysql -h127.0.0.1 -P3306 -utest_user -ptest_password liga_test -e "SHOW TABLES;"
+            echo "Checking Usuario table structure..."
+            mysql -h127.0.0.1 -P3306 -utest_user -ptest_password liga_test -e "DESCRIBE Usuarios;" || echo "Usuarios table does not exist"
+
         - name: Run tests
           run: npm test
           env:

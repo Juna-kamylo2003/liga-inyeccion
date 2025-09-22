@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1758561356610" clover="3.2.0">
-  <project timestamp="1758561356611" name="All files">
-    <metrics statements="407" coveredstatements="269" conditionals="90" coveredconditionals="23" methods="167" coveredmethods="115" elements="664" coveredelements="407" complexity="0" loc="407" ncloc="407" packages="4" files="33" classes="33"/>
+<coverage generated="1758562951975" clover="3.2.0">
+  <project timestamp="1758562951975" name="All files">
+    <metrics statements="409" coveredstatements="271" conditionals="126" coveredconditionals="50" methods="167" coveredmethods="115" elements="702" coveredelements="436" complexity="0" loc="409" ncloc="409" packages="5" files="34" classes="34"/>
+    <package name="config">
+      <metrics statements="2" coveredstatements="2" conditionals="36" coveredconditionals="27" methods="0" coveredmethods="0"/>
+      <file name="config.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\config\config.js">
+        <metrics statements="2" coveredstatements="2" conditionals="36" coveredconditionals="27" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+    </package>
     <package name="models">
       <metrics statements="71" coveredstatements="70" conditionals="10" coveredconditionals="7" methods="19" coveredmethods="19"/>
       <file name="equipo.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\models\equipo.js">

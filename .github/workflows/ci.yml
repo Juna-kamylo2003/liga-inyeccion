@@ -16,6 +16,18 @@
       name: Run tests
       runs-on: ubuntu-latest
 
+      services:
+        mariadb:
+          image: mariadb:10.5
+          env:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: liga_test
+            MYSQL_USER: test_user
+            MYSQL_PASSWORD: test_password
+          ports:
+            - 3306:3306
+          options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
@@ -28,5 +40,34 @@
         - name: Install dependencies
           run: npm ci
 
+        - name: Wait for MariaDB
+          run: |
+            for i in {30..0}; do
+              if mysqladmin ping -h127.0.0.1 -P3306 -utest_user -ptest_password --silent; then
+                break
+              fi
+              echo 'MariaDB is unavailable - sleeping'
+              sleep 1
+            done
+
+        - name: Run database migrations
+          run: npx sequelize-cli db:migrate --config config/config.js
+          env:
+            NODE_ENV: test
+            DB_HOST: 127.0.0.1
+            DB_PORT: 3306
+            DB_NAME: liga_test
+            DB_USERNAME: test_user
+            DB_PASSWORD: test_password
+            DB_DIALECT: mariadb
+
         - name: Run tests
           run: npm test
+          env:
+            NODE_ENV: test
+            DB_HOST: 127.0.0.1
+            DB_PORT: 3306
+            DB_NAME: liga_test
+            DB_USERNAME: test_user
+            DB_PASSWORD: test_password
+            DB_DIALECT: mariadb

@@ -70,7 +70,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: liga-api
           environment_name: ${{ github.ref_name == 'main' && 'liga-api-env' || 'liga-api-staging-env' }}
-          version_label: ${{ github.ref_name }}-${{ github.sha }}
+          version_label: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}
           region: us-east-1
           deployment_package: application.zip
           wait_for_deployment: true
@@ -82,8 +82,9 @@ jobs:
           echo "🚀 Deployment successful!"
           echo "📍 Environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}"
           echo "🌐 URL: ${{ github.ref_name == 'main' && 'http://liga-api-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' || 'http://liga-api-staging-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' }}"
-          echo "📦 Version: ${{ github.ref_name }}-${{ github.sha }}"
+          echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
           echo "🎯 Branch: ${{ github.ref_name }}"
+          echo "🔗 Commit: ${{ github.sha }}"
 
       - name: Health Check
         if: success()
@@ -109,7 +110,8 @@ jobs:
           echo "❌ Deployment failed!"
           echo "📍 Environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}"
           echo "🎯 Branch: ${{ github.ref_name }}"
-          echo "📦 Version: ${{ github.ref_name }}-${{ github.sha }}"
+          echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
+          echo "🔗 Commit: ${{ github.sha }}"
           echo "🔍 Check the logs above for details"
 
   # Job opcional para rollback en caso de falla

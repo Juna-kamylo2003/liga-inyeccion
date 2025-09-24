@@ -6,8 +6,27 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
+const allConfigs = require(__dirname + '/../config/config.js');
+const config = allConfigs[env];
 const db = {};
+
+// Debug logs para AWS (solo en desarrollo)
+if (env !== 'test') {
+  console.log('=== DATABASE CONFIG DEBUG ===');
+  console.log('NODE_ENV:', env);
+  console.log('Available configs:', Object.keys(allConfigs));
+  console.log('Using config:', {
+    username: config.username,
+    database: config.database,
+    host: config.host,
+    dialect: config.dialect
+  });
+  console.log('Environment variables:');
+  console.log('DB_USER:', process.env.DB_USER);
+  console.log('DB_NAME:', process.env.DB_NAME);
+  console.log('DB_HOST:', process.env.DB_HOST);
+  console.log('============================');
+}
 
 let sequelize;
 if (config.use_env_variable) {

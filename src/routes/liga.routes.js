@@ -2,25 +2,57 @@ const express = require('express');
 const router = express.Router();
 const { container } = require('../config/dependency-injection');
 
-router.get('/', (req, res) => {
-	console.log('container en /ligas:', container);
-	container.get('LigaController').getAll(req, res);
+router.get('/', async (req, res) => {
+  try {
+    console.log('🔍 Liga GET / - Intentando resolver LigaController...');
+    const controller = container.get('LigaController');
+    console.log('✅ Liga GET / - Controller resuelto:', !!controller);
+    await controller.getAll(req, res);
+  } catch (error) {
+    console.error('❌ Liga GET / - Error:', error.message);
+    console.error('❌ Liga GET / - Stack:', error.stack);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
-router.get('/:id', (req, res) => {
-	console.log('container en /ligas/:id:', container);
-	container.get('LigaController').getById(req, res);
+
+router.get('/:id', async (req, res) => {
+  try {
+    const controller = container.get('LigaController');
+    await controller.getById(req, res);
+  } catch (error) {
+    console.error('❌ Liga GET /:id - Error:', error.message);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
-router.post('/', (req, res) => {
-	console.log('container en POST /ligas:', container);
-	container.get('LigaController').create(req, res);
+
+router.post('/', async (req, res) => {
+  try {
+    const controller = container.get('LigaController');
+    await controller.create(req, res);
+  } catch (error) {
+    console.error('❌ Liga POST / - Error:', error.message);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
-router.put('/:id', (req, res) => {
-	console.log('container en PUT /ligas/:id:', container);
-	container.get('LigaController').update(req, res);
+
+router.put('/:id', async (req, res) => {
+  try {
+    const controller = container.get('LigaController');
+    await controller.update(req, res);
+  } catch (error) {
+    console.error('❌ Liga PUT /:id - Error:', error.message);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
-router.delete('/:id', (req, res) => {
-	console.log('container en DELETE /ligas/:id:', container);
-	container.get('LigaController').delete(req, res);
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const controller = container.get('LigaController');
+    await controller.delete(req, res);
+  } catch (error) {
+    console.error('❌ Liga DELETE /:id - Error:', error.message);
+    res.status(500).json({ error: 'Internal Server Error', details: error.message });
+  }
 });
 
 module.exports = router;

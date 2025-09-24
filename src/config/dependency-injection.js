@@ -52,26 +52,42 @@ function configureDependencies() {
   });
 
   // Liga bindings
-  container.bind('LigaRepository').toConstantValue(new LigaRepository(models.Liga));
-  container.bind('LigaService').toDynamicValue(() => {
-    console.log('Resolviendo LigaService...');
-    return new LigaService(container.get('LigaRepository'));
-  });
-  container.bind('LigaController').toDynamicValue(() => {
-    console.log('Resolviendo LigaController...');
-    return new LigaController(container.get('LigaService'));
-  });
+  try {
+    console.log('🔧 Configurando Liga bindings...');
+    console.log('🔧 models.Liga disponible:', !!models.Liga);
+    container.bind('LigaRepository').toConstantValue(new LigaRepository(models.Liga));
+    container.bind('LigaService').toDynamicValue(() => {
+      console.log('Resolviendo LigaService...');
+      return new LigaService(container.get('LigaRepository'));
+    });
+    container.bind('LigaController').toDynamicValue(() => {
+      console.log('Resolviendo LigaController...');
+      return new LigaController(container.get('LigaService'));
+    });
+    console.log('✅ Liga bindings configurados correctamente');
+  } catch (error) {
+    console.error('❌ Error configurando Liga bindings:', error.message);
+    throw error;
+  }
 
   // Temporada bindings
-  container.bind('TemporadaRepository').toConstantValue(new TemporadaRepository(models.Temporada));
-  container.bind('TemporadaService').toDynamicValue(() => {
-    console.log('Resolviendo TemporadaService...');
-    return new TemporadaService(container.get('TemporadaRepository'));
-  });
-  container.bind('TemporadaController').toDynamicValue(() => {
-    console.log('Resolviendo TemporadaController...');
-    return new TemporadaController(container.get('TemporadaService'));
-  });
+  try {
+    console.log('🔧 Configurando Temporada bindings...');
+    console.log('🔧 models.Temporada disponible:', !!models.Temporada);
+    container.bind('TemporadaRepository').toConstantValue(new TemporadaRepository(models.Temporada));
+    container.bind('TemporadaService').toDynamicValue(() => {
+      console.log('Resolviendo TemporadaService...');
+      return new TemporadaService(container.get('TemporadaRepository'));
+    });
+    container.bind('TemporadaController').toDynamicValue(() => {
+      console.log('Resolviendo TemporadaController...');
+      return new TemporadaController(container.get('TemporadaService'));
+    });
+    console.log('✅ Temporada bindings configurados correctamente');
+  } catch (error) {
+    console.error('❌ Error configurando Temporada bindings:', error.message);
+    throw error;
+  }
 
   // Equipo bindings
   container.bind('EquipoRepository').toConstantValue(new EquipoRepository(models.Equipo));

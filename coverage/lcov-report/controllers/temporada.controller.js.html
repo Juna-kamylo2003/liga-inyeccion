@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.95% </span>
+                <span class="strong">30.43% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/23</span>
+                <span class='fraction'>7/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/20</span>
+                <span class='fraction'>7/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,31 +104,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,32 +138,32 @@
     this.temporadaService = temporadaService;
   }
 &nbsp;
-  getAll = async (req, res) =&gt; {
-    const temporadas = await this.temporadaService.getAll();
-    res.json(temporadas);
+  getAll = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+    const temporadas = <span class="cstat-no" title="statement not covered" >await this.temporadaService.getAll();</span>
+<span class="cstat-no" title="statement not covered" >    res.json(temporadas);</span>
   };
 &nbsp;
-  getById = async (req, res) =&gt; {
-    const temporada = await this.temporadaService.getById(req.params.id);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!temporada) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span>
-    res.json(temporada);
+  getById = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+    const temporada = <span class="cstat-no" title="statement not covered" >await this.temporadaService.getById(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >    if (!temporada) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span></span>
+<span class="cstat-no" title="statement not covered" >    res.json(temporada);</span>
   };
 &nbsp;
-  create = async (req, res) =&gt; {
-    const temporada = await this.temporadaService.create(req.body);
-    res.status(201).json(temporada);
+  create = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+    const temporada = <span class="cstat-no" title="statement not covered" >await this.temporadaService.create(req.body);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(201).json(temporada);</span>
   };
 &nbsp;
-  update = async (req, res) =&gt; {
-    const temporada = await this.temporadaService.update(req.params.id, req.body);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!temporada) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span>
-    res.json(temporada);
+  update = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+    const temporada = <span class="cstat-no" title="statement not covered" >await this.temporadaService.update(req.params.id, req.body);</span>
+<span class="cstat-no" title="statement not covered" >    if (!temporada) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span></span>
+<span class="cstat-no" title="statement not covered" >    res.json(temporada);</span>
   };
 &nbsp;
-  delete = async (req, res) =&gt; {
-    const deleted = await this.temporadaService.delete(req.params.id);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (!deleted) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span>
-    res.json({ message: 'Temporada eliminada' });
+  delete = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
+    const deleted = <span class="cstat-no" title="statement not covered" >await this.temporadaService.delete(req.params.id);</span>
+<span class="cstat-no" title="statement not covered" >    if (!deleted) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Temporada no encontrada' });</span></span>
+<span class="cstat-no" title="statement not covered" >    res.json({ message: 'Temporada eliminada' });</span>
   };
 }
 &nbsp;
@@ -175,7 +175,7 @@ module.exports = TemporadaController;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-24T21:26:41.333Z
+                at 2025-09-24T21:33:52.382Z
             </div>
         <script src="../prettify.js"></script>
         <script>

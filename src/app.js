@@ -121,15 +121,59 @@ app.get('/test-endpoints', async (req, res) => {
   }
 });
 
+// Endpoint para verificar estructura detallada de la base de datos
+app.get('/check-database-structure', async (req, res) => {
+  try {
+    const sequelize = require('../models').sequelize;
+    
+    // Verificar si las tablas existen
+    const tables = await sequelize.getQueryInterface().showAllTables();
+    console.log('Tablas encontradas:', tables);
+    
+    // Verificar estructura de cada tabla problemática
+    const tableStructures = {};
+    
+    for (const table of ['Jugadores', 'jugadores', 'Equipos', 'Partidos']) {
+      try {
+        const columns = await sequelize.getQueryInterface().describeTable(table);
+        tableStructures[table] = {
+          exists: true,
+          columns: Object.keys(columns)
+        };
+      } catch (error) {
+        tableStructures[table] = {
+          exists: false,
+          error: error.message
+        };
+      }
+    }
+    
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      allTables: tables,
+      problematicTables: tableStructures,
+      database: process.env.DB_NAME,
+      host: process.env.DB_HOST
+    });
+  } catch (error) {
+    console.error('Error verificando estructura:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: error.stack
+    });
+  }
+});
+
 // Endpoint especial para ejecutar migraciones en producción
 app.post('/migrate-database', async (req, res) => {
   try {
     const sequelize = require('../models').sequelize;
-    const { QueryInterface } = require('sequelize');
     
     // Verificar si las tablas ya existen
     const tables = await sequelize.getQueryInterface().showAllTables();
-    console.log('Tablas existentes:', tables);
+    console.log('Tablas existentes antes de migrar:', tables);
     
     // Ejecutar migraciones pendientes
     const { execSync } = require('child_process');
@@ -139,15 +183,56 @@ app.post('/migrate-database', async (req, res) => {
       env: { ...process.env, NODE_ENV: 'production' }
     });
     
+    // Verificar tablas después de migrar
+    const tablesAfter = await sequelize.getQueryInterface().showAllTables();
+    
     res.json({
       success: true,
       message: 'Migraciones ejecutadas correctamente',
-      existingTables: tables,
+      tablesBefore: tables,
+      tablesAfter: tablesAfter,
       migrationOutput: result,
       timestamp: new Date().toISOString()
     });
   } catch (error) {
     console.error('Error ejecutando migraciones:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: error.stack,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Endpoint para forzar recreación de tablas
+app.post('/force-recreate-tables', async (req, res) => {
+  try {
+    const { execSync } = require('child_process');
+    
+    // Deshacer todas las migraciones y volver a ejecutarlas
+    const undoResult = execSync('npx sequelize-cli db:migrate:undo:all', { 
+      encoding: 'utf8',
+      cwd: process.cwd(),
+      env: { ...process.env, NODE_ENV: 'production' }
+    });
+    
+    // Ejecutar todas las migraciones de nuevo
+    const migrateResult = execSync('npx sequelize-cli db:migrate', { 
+      encoding: 'utf8',
+      cwd: process.cwd(),
+      env: { ...process.env, NODE_ENV: 'production' }
+    });
+    
+    res.json({
+      success: true,
+      message: 'Tablas recreadas exitosamente',
+      undoOutput: undoResult,
+      migrateOutput: migrateResult,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error recreando tablas:', error);
     res.status(500).json({
       success: false,
       error: error.message,

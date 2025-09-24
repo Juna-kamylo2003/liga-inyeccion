@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1758749201428" clover="3.2.0">
-  <project timestamp="1758749201429" name="All files">
-    <metrics statements="282" coveredstatements="181" conditionals="58" coveredconditionals="15" methods="118" coveredmethods="82" elements="458" coveredelements="278" complexity="0" loc="282" ncloc="282" packages="3" files="19" classes="19"/>
+<coverage generated="1758749632471" clover="3.2.0">
+  <project timestamp="1758749632471" name="All files">
+    <metrics statements="282" coveredstatements="103" conditionals="58" coveredconditionals="9" methods="118" coveredmethods="20" elements="458" coveredelements="132" complexity="0" loc="282" ncloc="282" packages="3" files="19" classes="19"/>
     <package name="controllers">
-      <metrics statements="145" coveredstatements="115" conditionals="30" coveredconditionals="15" methods="30" coveredmethods="30"/>
+      <metrics statements="145" coveredstatements="89" conditionals="30" coveredconditionals="9" methods="30" coveredmethods="20"/>
       <file name="equipo.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\equipo.controller.js">
         <metrics statements="35" coveredstatements="25" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="6"/>
         <line num="3" count="1" type="stmt"/>
@@ -81,26 +81,26 @@
         <line num="80" count="1" type="stmt"/>
       </file>
       <file name="liga.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\liga.controller.js">
-        <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="6"/>
+        <metrics statements="20" coveredstatements="7" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
       </file>
       <file name="partido.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\partido.controller.js">
@@ -142,37 +142,37 @@
         <line num="80" count="1" type="stmt"/>
       </file>
       <file name="temporada.controller.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\controllers\temporada.controller.js">
-        <metrics statements="20" coveredstatements="20" conditionals="6" coveredconditionals="3" methods="6" coveredmethods="6"/>
+        <metrics statements="20" coveredstatements="7" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="35" count="1" type="stmt"/>
       </file>
     </package>
     <package name="repositories">
-      <metrics statements="86" coveredstatements="33" conditionals="28" coveredconditionals="0" methods="44" coveredmethods="26"/>
+      <metrics statements="86" coveredstatements="7" conditionals="28" coveredconditionals="0" methods="44" coveredmethods="0"/>
       <file name="equipo.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\equipo.repository.js">
-        <metrics statements="12" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
@@ -183,11 +183,11 @@
         <line num="29" count="1" type="stmt"/>
       </file>
       <file name="jugador.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\jugador.repository.js">
-        <metrics statements="12" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
@@ -198,11 +198,11 @@
         <line num="29" count="1" type="stmt"/>
       </file>
       <file name="liga.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\liga.repository.js">
-        <metrics statements="12" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
@@ -213,11 +213,11 @@
         <line num="29" count="1" type="stmt"/>
       </file>
       <file name="partido.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\partido.repository.js">
-        <metrics statements="12" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
@@ -228,12 +228,12 @@
         <line num="29" count="1" type="stmt"/>
       </file>
       <file name="resultado.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\resultado.repository.js">
-        <metrics statements="13" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="3"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <metrics statements="13" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
@@ -244,12 +244,12 @@
         <line num="37" count="2" type="stmt"/>
       </file>
       <file name="tablaposicione.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\tablaposicione.repository.js">
-        <metrics statements="13" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="3"/>
-        <line num="4" count="4" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
+        <metrics statements="13" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
         <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="26" count="0" type="stmt"/>
@@ -260,11 +260,11 @@
         <line num="37" count="2" type="stmt"/>
       </file>
       <file name="temporada.repository.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\repositories\temporada.repository.js">
-        <metrics statements="12" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="5" count="3" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <metrics statements="12" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="19" count="0" type="stmt"/>
@@ -276,52 +276,52 @@
       </file>
     </package>
     <package name="services">
-      <metrics statements="51" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="44" coveredmethods="26"/>
+      <metrics statements="51" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="44" coveredmethods="0"/>
       <file name="equipo.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\equipo.service.js">
-        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
       <file name="jugador.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\jugador.service.js">
-        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
       <file name="liga.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\liga.service.js">
-        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
       <file name="partido.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\partido.service.js">
-        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
       </file>
       <file name="resultado.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\resultado.service.js">
-        <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="3"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="8" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -329,10 +329,10 @@
         <line num="31" count="1" type="stmt"/>
       </file>
       <file name="tablaposicione.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\tablaposicione.service.js">
-        <metrics statements="8" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="3"/>
-        <line num="4" count="2" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="8" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
@@ -340,11 +340,11 @@
         <line num="31" count="1" type="stmt"/>
       </file>
       <file name="temporada.service.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\src\services\temporada.service.js">
-        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
+        <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="22" count="1" type="stmt"/>

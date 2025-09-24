@@ -986,7 +986,7 @@ app.get('/test-di', (req, res) => {
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Liga Inyección API v1.0', 
+    message: 'Liga Inyección API v1.1.3', 
     status: 'running',
     timestamp: new Date().toISOString()
   });

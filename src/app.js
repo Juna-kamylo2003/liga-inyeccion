@@ -1688,6 +1688,120 @@ app.get('/check-container', async (req, res) => {
   }
 });
 
+// Endpoint para refrescar el container completamente
+app.post('/refresh-container', async (req, res) => {
+  try {
+    // Limpiar caché de require para forzar recarga
+    delete require.cache[require.resolve('./config/dependency-injection')];
+    delete require.cache[require.resolve('../models')];
+    
+    // Recargar modelos
+    const models = require('../models');
+    console.log('🔄 Modelos recargados:', Object.keys(models));
+    
+    // Recargar container
+    const container = require('./config/dependency-injection');
+    console.log('🔄 Container recargado');
+    
+    // Verificar que todos los servicios estén disponibles
+    const services = ['LigaController', 'EquipoController', 'JugadorController'];
+    const testResult = {};
+    
+    for (const service of services) {
+      try {
+        const instance = container.get(service);
+        testResult[service] = { status: 'ok', available: true };
+      } catch (error) {
+        testResult[service] = { status: 'error', error: error.message };
+      }
+    }
+    
+    res.json({
+      success: true,
+      message: 'Container refrescado exitosamente',
+      timestamp: new Date().toISOString(),
+      testResult: testResult
+    });
+    
+  } catch (error) {
+    console.error('❌ Error refrescando container:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      message: 'Error refrescando container'
+    });
+  }
+});
+
+// Endpoint de diagnóstico completo para modelos y conexión
+app.get('/diagnose-models', async (req, res) => {
+  try {
+    console.log('🔍 Iniciando diagnóstico de modelos...');
+    
+    const models = require('../models');
+    const modelInfo = {};
+    
+    // Verificar cada modelo
+    Object.keys(models).forEach(key => {
+      if (key !== 'sequelize' && key !== 'Sequelize') {
+        const model = models[key];
+        modelInfo[key] = {
+          name: model.name,
+          tableName: model.tableName,
+          attributes: Object.keys(model.rawAttributes),
+          associations: Object.keys(model.associations || {}),
+          options: {
+            timestamps: model.options?.timestamps,
+            paranoid: model.options?.paranoid
+          }
+        };
+      }
+    });
+    
+    // Probar conexión a la base de datos
+    let connectionTest = {};
+    try {
+      await models.sequelize.authenticate();
+      connectionTest = { status: 'success', message: 'Conexión exitosa' };
+    } catch (error) {
+      connectionTest = { status: 'error', message: error.message };
+    }
+    
+    // Verificar que las tablas existen
+    let tableCheck = {};
+    try {
+      const tables = await models.sequelize.getQueryInterface().showAllTables();
+      tableCheck = { status: 'success', tables: tables };
+    } catch (error) {
+      tableCheck = { status: 'error', message: error.message };
+    }
+    
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV,
+      modelsLoaded: Object.keys(models).filter(k => k !== 'sequelize' && k !== 'Sequelize'),
+      modelInfo: modelInfo,
+      connectionTest: connectionTest,
+      tableCheck: tableCheck,
+      databaseConfig: {
+        host: process.env.DB_HOST,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        dialect: 'mysql'
+      }
+    });
+    
+  } catch (error) {
+    console.error('❌ Error en diagnóstico:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: error.stack
+    });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);

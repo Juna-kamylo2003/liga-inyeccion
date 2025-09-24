@@ -1,15 +1,11 @@
 // ...existing code...
 
 const express = require('express');
-const { configureDependencies } = require('./config/dependency-injection');
+const container = require('./config/dependency-injection');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
 
 const app = express();
-app.use(express.json());
-
-// CRITICAL: Configure dependencies BEFORE importing routes
-configureDependencies();
 
 // Now it's safe to import routes after DI container is configured
 const routes = require('./routes/index');
@@ -18,7 +14,6 @@ const routes = require('./routes/index');
 app.get('/test-models', (req, res) => {
   try {
     const models = require('../models');
-    const { container } = require('./config/dependency-injection');
     
     res.json({
       success: true,
@@ -122,6 +117,42 @@ app.get('/test-endpoints', async (req, res) => {
       status: 'error',
       error: error.message,
       stack: error.stack
+    });
+  }
+});
+
+// Endpoint especial para ejecutar migraciones en producción
+app.post('/migrate-database', async (req, res) => {
+  try {
+    const sequelize = require('../models').sequelize;
+    const { QueryInterface } = require('sequelize');
+    
+    // Verificar si las tablas ya existen
+    const tables = await sequelize.getQueryInterface().showAllTables();
+    console.log('Tablas existentes:', tables);
+    
+    // Ejecutar migraciones pendientes
+    const { execSync } = require('child_process');
+    const result = execSync('npx sequelize-cli db:migrate', { 
+      encoding: 'utf8',
+      cwd: process.cwd(),
+      env: { ...process.env, NODE_ENV: 'production' }
+    });
+    
+    res.json({
+      success: true,
+      message: 'Migraciones ejecutadas correctamente',
+      existingTables: tables,
+      migrationOutput: result,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error ejecutando migraciones:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      stack: error.stack,
+      timestamp: new Date().toISOString()
     });
   }
 });
@@ -937,7 +968,6 @@ app.get('/test-problematic-routes', async (req, res) => {
   const results = {};
   
   try {
-    const { container } = require('./config/dependency-injection');
     
     // Simular llamada a LigaController
     try {
@@ -992,7 +1022,6 @@ app.get('/test-problematic-routes', async (req, res) => {
 // Endpoint para probar la inyección de dependencias
 app.get('/test-di', (req, res) => {
   try {
-    const { container } = require('./config/dependency-injection');
     const results = {};
     
     const controllers = [
@@ -1251,7 +1280,6 @@ app.get('/debug-database-errors', async (req, res) => {
 app.get('/debug-problematic-controllers', (req, res) => {
   try {
     const models = require('../models');
-    const { container } = require('./config/dependency-injection');
     
     const problematicControllers = ['LigaController', 'EquipoController', 'JugadorController', 'TemporadaController'];
     const workingControllers = ['UsuarioController', 'ResultadoController', 'TablaPosicioneController'];

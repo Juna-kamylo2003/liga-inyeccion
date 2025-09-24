@@ -145,4 +145,8 @@ function configureDependencies() {
   });
 }
 
-module.exports = { container, configureDependencies };
+// Configurar las dependencias automáticamente
+configureDependencies();
+
+// Exportar el container configurado
+module.exports = container;

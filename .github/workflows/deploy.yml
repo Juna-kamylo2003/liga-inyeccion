@@ -19,9 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'push' }}
     
-    environment:
-      name: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
-      url: ${{ github.ref_name == 'main' && 'http://liga-api-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' || 'http://liga-api-staging-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' }}
+
 
     steps:
       - name: Checkout repository
@@ -69,7 +67,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: liga-inyeccion
-          environment_name: ${{ github.ref_name == 'main' && 'liga-api-env' || 'liga-api-staging-env' }}
+          environment_name: Liga-inyeccion-env
           version_label: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}
           region: us-east-1
           deployment_package: application.zip
@@ -80,8 +78,8 @@ jobs:
         if: success()
         run: |
           echo "🚀 Deployment successful!"
-          echo "📍 Environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}"
-          echo "🌐 URL: ${{ github.ref_name == 'main' && 'http://liga-api-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' || 'http://liga-api-staging-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' }}"
+          echo "📍 Environment: Liga-inyeccion-env"
+          echo "🌐 URL: http://Liga-inyeccion-env.eba-p3jydbcq.us-east-1.elasticbeanstalk.com"
           echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
           echo "🎯 Branch: ${{ github.ref_name }}"
           echo "🔗 Commit: ${{ github.sha }}"
@@ -90,7 +88,7 @@ jobs:
         if: success()
         run: |
           echo "Performing health check..."
-          HEALTH_URL="${{ github.ref_name == 'main' && 'http://liga-api-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' || 'http://liga-api-staging-env.eba-mmvhpbqm.us-east-1.elasticbeanstalk.com' }}/api/ligas"
+          HEALTH_URL="http://Liga-inyeccion-env.eba-p3jydbcq.us-east-1.elasticbeanstalk.com/api/ligas"
           
           # Esperar un poco para que el deployment se complete
           sleep 30
@@ -108,7 +106,7 @@ jobs:
         if: failure()
         run: |
           echo "❌ Deployment failed!"
-          echo "📍 Environment: ${{ github.ref_name == 'main' && 'Production' || 'Staging' }}"
+          echo "📍 Environment: Liga-inyeccion-env"
           echo "🎯 Branch: ${{ github.ref_name }}"
           echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
           echo "🔗 Commit: ${{ github.sha }}"
@@ -134,7 +132,7 @@ jobs:
           echo "🔄 Initiating rollback for ${{ github.ref_name }}..."
           
           # Obtener la versión anterior
-          ENVIRONMENT_NAME="${{ github.ref_name == 'main' && 'liga-api-env' || 'liga-api-staging-env' }}"
+          ENVIRONMENT_NAME="Liga-inyeccion-env"
           
           # Aquí podrías implementar lógica de rollback más sofisticada
           echo "💡 Manual rollback required through AWS Console"

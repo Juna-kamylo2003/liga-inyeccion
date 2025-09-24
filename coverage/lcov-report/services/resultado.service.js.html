@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/equipo.service.js</title>
+    <title>Code coverage report for services/resultado.service.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> equipo.service.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">services</a> resultado.service.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">42.85% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>3/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
@@ -85,15 +85,24 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -102,33 +111,51 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class EquipoService {
-  constructor(equipoRepository) {
-    this.equipoRepository = equipoRepository;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+class ResultadoService {
+  constructor(resultadoRepository) {
+    this.resultadoRepository = resultadoRepository;
   }
-  async getAll() {
-    return this.equipoRepository.findAll();
+&nbsp;
+  async createResultado(data) {
+    return this.resultadoRepository.create(data);
   }
-  async getById(id) {
-    return this.equipoRepository.findById(id);
+&nbsp;
+  async getAllResultados() {
+    return this.resultadoRepository.findAll();
   }
-  async create(data) {
-    return this.equipoRepository.create(data);
+<span class="fstat-no" title="function not covered" >  as</span>ync findAll() {
+<span class="cstat-no" title="statement not covered" >    return this.resultadoRepository.findAll();</span>
   }
-<span class="fstat-no" title="function not covered" >  as</span>ync update(id, data) {
-<span class="cstat-no" title="statement not covered" >    return this.equipoRepository.update(id, data);</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  as</span>ync getResultadoById(id) {
+<span class="cstat-no" title="statement not covered" >    return this.resultadoRepository.getById(id);</span>
   }
-<span class="fstat-no" title="function not covered" >  as</span>ync delete(id) {
-<span class="cstat-no" title="statement not covered" >    return this.equipoRepository.delete(id);</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >  as</span>ync updateResultado(id, data) {
+<span class="cstat-no" title="statement not covered" >    return this.resultadoRepository.update(id, data);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  as</span>ync deleteResultado(id) {
+<span class="cstat-no" title="statement not covered" >    return this.resultadoRepository.delete(id);</span>
   }
 }
 &nbsp;
-module.exports = EquipoService;
+module.exports = ResultadoService;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

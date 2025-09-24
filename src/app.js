@@ -1540,6 +1540,154 @@ app.get('/fix-remaining-issues', async (req, res) => {
   }
 });
 
+// Endpoint para limpiar tablas duplicadas en la base de datos
+app.post('/clean-database', async (req, res) => {
+  let conn;
+  try {
+    const mysql = require('mysql2/promise');
+    
+    conn = await mysql.createConnection({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    });
+
+    const results = [];
+    
+    // 1. Obtener todas las tablas
+    const [tables] = await conn.query('SHOW TABLES');
+    const tableNames = tables.map(row => Object.values(row)[0]);
+    
+    results.push(`📋 Tablas encontradas: ${tableNames.join(', ')}`);
+    
+    // 2. Identificar tablas que necesitamos conservar
+    const requiredTables = [
+      'Ligas', 'Temporadas', 'Equipos', 'Jugadores', 
+      'Partidos', 'Resultados', 'TablaPosiciones', 'Usuarios',
+      'SequelizeMeta'
+    ];
+    
+    // 3. Identificar tablas duplicadas o innecesarias
+    const tablesToDelete = tableNames.filter(table => {
+      // Eliminar tablas en minúsculas si existe la versión capitalizada
+      const capitalizedVersion = table.charAt(0).toUpperCase() + table.slice(1);
+      return (
+        tableNames.includes(capitalizedVersion) && 
+        table !== capitalizedVersion &&
+        !requiredTables.includes(table)
+      ) || (
+        // Eliminar tablas que no están en nuestra lista requerida y no son SequelizeMeta
+        !requiredTables.includes(table) &&
+        table !== 'SequelizeMeta' &&
+        !table.endsWith('s') // Evitar eliminar plurales correctos
+      );
+    });
+    
+    results.push(`🗑️  Tablas a eliminar: ${tablesToDelete.join(', ')}`);
+    
+    // 4. Eliminar tablas innecesarias
+    for (const table of tablesToDelete) {
+      try {
+        await conn.query(`DROP TABLE IF EXISTS \`${table}\``);
+        results.push(`✅ Tabla '${table}' eliminada correctamente`);
+      } catch (error) {
+        results.push(`❌ Error eliminando tabla '${table}': ${error.message}`);
+      }
+    }
+    
+    // 5. Verificar tablas restantes
+    const [finalTables] = await conn.query('SHOW TABLES');
+    const finalTableNames = finalTables.map(row => Object.values(row)[0]);
+    
+    results.push(`📋 Tablas finales: ${finalTableNames.join(', ')}`);
+    
+    // 6. Reiniciar el servidor para refrescar la inyección de dependencias
+    results.push(`🔄 Recomendación: Reinicie la aplicación para refrescar la inyección de dependencias`);
+    
+    res.json({
+      success: true,
+      message: 'Limpieza de base de datos completada',
+      results: results,
+      originalTableCount: tableNames.length,
+      finalTableCount: finalTableNames.length,
+      deletedTables: tablesToDelete,
+      remainingTables: finalTableNames
+    });
+    
+  } catch (error) {
+    console.error('❌ Error en clean-database:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Error limpiando base de datos',
+      message: error.message
+    });
+  } finally {
+    if (conn) {
+      try {
+        await conn.close();
+      } catch (closeError) {
+        console.error('Error cerrando conexión:', closeError);
+      }
+    }
+  }
+});
+
+// Endpoint para verificar el estado del container de inyección de dependencias
+app.get('/check-container', async (req, res) => {
+  try {
+    const container = require('./config/dependency-injection');
+    
+    const services = [
+      'LigaController', 'LigaService', 'LigaRepository',
+      'TemporadaController', 'TemporadaService', 'TemporadaRepository',
+      'EquipoController', 'EquipoService', 'EquipoRepository',
+      'JugadorController', 'JugadorService', 'JugadorRepository',
+      'PartidoController', 'PartidoService', 'PartidoRepository',
+      'ResultadoController', 'ResultadoService', 'ResultadoRepository',
+      'TablaPosicioneController', 'TablaPosicioneService', 'TablaPosicioneRepository',
+      'UsuarioController', 'UsuarioService', 'UsuarioRepository'
+    ];
+    
+    const containerStatus = {};
+    
+    for (const service of services) {
+      try {
+        const instance = container.get(service);
+        containerStatus[service] = {
+          status: 'available',
+          type: typeof instance,
+          hasGetMethod: typeof instance.get === 'function',
+          hasGetAllMethod: typeof instance.getAll === 'function'
+        };
+      } catch (error) {
+        containerStatus[service] = {
+          status: 'error',
+          error: error.message
+        };
+      }
+    }
+    
+    res.json({
+      success: true,
+      timestamp: new Date().toISOString(),
+      containerStatus: containerStatus,
+      summary: {
+        total: services.length,
+        available: Object.values(containerStatus).filter(s => s.status === 'available').length,
+        errors: Object.values(containerStatus).filter(s => s.status === 'error').length
+      }
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      message: 'Error verificando container de inyección de dependencias'
+    });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);

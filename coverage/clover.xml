@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1758752579925" clover="3.2.0">
-  <project timestamp="1758752579925" name="All files">
-    <metrics statements="498" coveredstatements="304" conditionals="166" coveredconditionals="71" methods="168" coveredmethods="115" elements="832" coveredelements="490" complexity="0" loc="498" ncloc="498" packages="5" files="34" classes="34"/>
+<coverage generated="1758757837806" clover="3.2.0">
+  <project timestamp="1758757837806" name="All files">
+    <metrics statements="498" coveredstatements="304" conditionals="142" coveredconditionals="55" methods="168" coveredmethods="115" elements="808" coveredelements="474" complexity="0" loc="498" ncloc="498" packages="5" files="34" classes="34"/>
     <package name="config">
-      <metrics statements="33" coveredstatements="18" conditionals="70" coveredconditionals="45" methods="1" coveredmethods="0"/>
+      <metrics statements="33" coveredstatements="18" conditionals="46" coveredconditionals="29" methods="1" coveredmethods="0"/>
       <file name="config.js" path="D:\DOCUMENTOS\CAMACHO\10. Decimo Semestre\Seminario de actulizacion\COMO_LO_piden\config\config.js">
-        <metrics statements="33" coveredstatements="18" conditionals="70" coveredconditionals="45" methods="1" coveredmethods="0"/>
+        <metrics statements="33" coveredstatements="18" conditionals="46" coveredconditionals="29" methods="1" coveredmethods="0"/>
         <line num="1" count="5" type="stmt"/>
         <line num="4" count="5" type="stmt"/>
         <line num="15" count="5" type="cond" truecount="1" falsecount="1"/>

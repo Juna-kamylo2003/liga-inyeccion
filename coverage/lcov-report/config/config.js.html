@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.24% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/33</span>
+                <span class='fraction'>18/33</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.12% </span>
+                <span class="strong">64.28% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>34/64</span>
+                <span class='fraction'>45/70</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">24.24% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/33</span>
+                <span class='fraction'>18/33</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -182,14 +182,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,8 +267,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">require('dotenv').config();
@@ -285,15 +285,15 @@ const isAWS = !!(
 );
 &nbsp;
 // Debug temporalmente desactivado para tests más rápidos
-<span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV !== 'test') {
-<span class="cstat-no" title="statement not covered" >  console.log('=== CONFIG DEBUG ===');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('AWS Detection Variables:');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- AWS_REGION:', process.env.AWS_REGION || 'NOT_SET');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- AWS_DEFAULT_REGION:', process.env.AWS_DEFAULT_REGION || 'NOT_SET');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- AWS_EXECUTION_ENV:', process.env.AWS_EXECUTION_ENV || 'NOT_SET');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- DB_HOST:', process.env.DB_HOST || 'NOT_SET');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- EB_NODE_COMMAND:', process.env.EB_NODE_COMMAND || 'NOT_SET');</span>
-<span class="cstat-no" title="statement not covered" >  console.log('- Is AWS detected:', isAWS);</span>
+<span class="missing-if-branch" title="else path not taken" >E</span>if (process.env.NODE_ENV !== 'test') {
+  console.log('=== CONFIG DEBUG ===');
+  console.log('AWS Detection Variables:');
+  console.log('- AWS_REGION:', process.env.AWS_REGION || 'NOT_SET');
+  console.log('- AWS_DEFAULT_REGION:', process.env.AWS_DEFAULT_REGION || 'NOT_SET');
+  console.log('- AWS_EXECUTION_ENV:', process.env.AWS_EXECUTION_ENV || 'NOT_SET');
+  console.log('- DB_HOST:', process.env.DB_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >'NOT_SET')</span>;
+  console.log('- EB_NODE_COMMAND:', process.env.EB_NODE_COMMAND || 'NOT_SET');
+  console.log('- Is AWS detected:', isAWS);
 }
 &nbsp;
 // Si estamos en AWS, SIEMPRE forzar production
@@ -311,16 +311,16 @@ const configs = {
     database: process.env.DB_NAME || <span class="branch-1 cbranch-no" title="branch not covered" >"ligas_db",</span>
     host: process.env.DB_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >"127.0.0.1",</span>
     port: process.env.DB_PORT || <span class="branch-1 cbranch-no" title="branch not covered" >3306,</span>
-    dialect: "mysql",
+    dialect: process.env.DB_DIALECT || <span class="branch-1 cbranch-no" title="branch not covered" >"mysql",</span>
     logging: false
   },
   test: {
     username: process.env.DB_USERNAME || "root",
     password: process.env.DB_PASSWORD || "",
-    database: "ligas_db_test",
+    database: process.env.DB_NAME || <span class="branch-1 cbranch-no" title="branch not covered" >"ligas_db_test",</span>
     host: process.env.DB_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >"127.0.0.1",</span>
     port: process.env.DB_PORT || <span class="branch-1 cbranch-no" title="branch not covered" >3306,</span>
-    dialect: "mysql",
+    dialect: process.env.DB_DIALECT || <span class="branch-1 cbranch-no" title="branch not covered" >"mysql",</span>
     logging: false
   },
   production: {
@@ -329,7 +329,7 @@ const configs = {
     database: process.env.DB_NAME || <span class="branch-1 cbranch-no" title="branch not covered" >"footballdb",</span>
     host: process.env.DB_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >"",</span>
     port: parseInt(process.env.DB_PORT) || <span class="branch-1 cbranch-no" title="branch not covered" >3306,</span>
-    dialect: process.env.DB_DIALECT || "mariadb",
+    dialect: process.env.DB_DIALECT || <span class="branch-1 cbranch-no" title="branch not covered" >"mariadb",</span>
     logging: <span class="fstat-no" title="function not covered" >(m</span>sg) =&gt; <span class="cstat-no" title="statement not covered" >console.log('🔵 Sequelize:', msg),</span>
     dialectOptions: {
       connectTimeout: 60000,
@@ -370,9 +370,9 @@ const configs = {
   
 <span class="cstat-no" title="statement not covered" >  module.exports = forcedConfig;</span>
 } else {
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV !== 'test') {
-<span class="cstat-no" title="statement not covered" >    console.log('📋 Using standard multi-environment config');</span>
-<span class="cstat-no" title="statement not covered" >    console.log('==================');</span>
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (process.env.NODE_ENV !== 'test') {
+    console.log('📋 Using standard multi-environment config');
+    console.log('==================');
   }
   module.exports = configs;
 }</pre></td></tr></table></pre>
@@ -382,7 +382,7 @@ const configs = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-24T16:22:49.887Z
+                at 2025-09-24T22:22:59.545Z
             </div>
         <script src="../prettify.js"></script>
         <script>

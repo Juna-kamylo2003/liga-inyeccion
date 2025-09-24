@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">86.95% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/23</span>
+                <span class='fraction'>20/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/20</span>
+                <span class='fraction'>20/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -104,31 +104,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,32 +138,32 @@
     this.ligaService = ligaService;
   }
 &nbsp;
-  getAll = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const ligas = <span class="cstat-no" title="statement not covered" >await this.ligaService.getAll();</span>
-<span class="cstat-no" title="statement not covered" >    res.json(ligas);</span>
+  getAll = async (req, res) =&gt; {
+    const ligas = await this.ligaService.getAll();
+    res.json(ligas);
   };
 &nbsp;
-  getById = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const liga = <span class="cstat-no" title="statement not covered" >await this.ligaService.getById(req.params.id);</span>
-<span class="cstat-no" title="statement not covered" >    if (!liga) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span></span>
-<span class="cstat-no" title="statement not covered" >    res.json(liga);</span>
+  getById = async (req, res) =&gt; {
+    const liga = await this.ligaService.getById(req.params.id);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!liga) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span>
+    res.json(liga);
   };
 &nbsp;
-  create = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const liga = <span class="cstat-no" title="statement not covered" >await this.ligaService.create(req.body);</span>
-<span class="cstat-no" title="statement not covered" >    res.status(201).json(liga);</span>
+  create = async (req, res) =&gt; {
+    const liga = await this.ligaService.create(req.body);
+    res.status(201).json(liga);
   };
 &nbsp;
-  update = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const liga = <span class="cstat-no" title="statement not covered" >await this.ligaService.update(req.params.id, req.body);</span>
-<span class="cstat-no" title="statement not covered" >    if (!liga) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span></span>
-<span class="cstat-no" title="statement not covered" >    res.json(liga);</span>
+  update = async (req, res) =&gt; {
+    const liga = await this.ligaService.update(req.params.id, req.body);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!liga) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span>
+    res.json(liga);
   };
 &nbsp;
-  delete = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const deleted = <span class="cstat-no" title="statement not covered" >await this.ligaService.delete(req.params.id);</span>
-<span class="cstat-no" title="statement not covered" >    if (!deleted) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span></span>
-<span class="cstat-no" title="statement not covered" >    res.json({ message: 'Liga eliminada' });</span>
+  delete = async (req, res) =&gt; {
+    const deleted = await this.ligaService.delete(req.params.id);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!deleted) <span class="cstat-no" title="statement not covered" >return res.status(404).json({ message: 'Liga no encontrada' });</span>
+    res.json({ message: 'Liga eliminada' });
   };
 }
 &nbsp;
@@ -175,7 +175,7 @@ module.exports = LigaController;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-24T21:43:39.752Z
+                at 2025-09-24T22:21:15.281Z
             </div>
         <script src="../prettify.js"></script>
         <script>

@@ -11,7 +11,7 @@ const config = allConfigs[env];
 const db = {};
 
 // Debug logs para AWS (solo en desarrollo)
-if (env !== 'test') {
+if (env !== 'test' && config) {
   console.log('=== DATABASE CONFIG DEBUG ===');
   console.log('NODE_ENV:', env);
   console.log('Available configs:', Object.keys(allConfigs));
@@ -29,10 +29,19 @@ if (env !== 'test') {
 }
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (config) {
+  if (config.use_env_variable) {
+    sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  } else {
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
+  }
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  // Fallback config for tests
+  sequelize = new Sequelize('ligas_db_test', 'root', '', {
+    host: '127.0.0.1',
+    dialect: 'mariadb',
+    logging: false
+  });
 }
 
 fs

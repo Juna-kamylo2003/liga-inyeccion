@@ -79,6 +79,53 @@ app.get('/test-routes', (req, res) => {
   }
 });
 
+// Debug endpoint específico para probar endpoints problemáticos
+app.get('/test-endpoints', async (req, res) => {
+  try {
+    const container = require('./config/dependency-injection');
+    const testResults = {};
+    
+    // Probar equipos
+    try {
+      const equipoService = container.get('EquipoService');
+      const equipos = await equipoService.getAll();
+      testResults.equipos = { status: 'ok', count: equipos.length };
+    } catch (error) {
+      testResults.equipos = { status: 'error', error: error.message };
+    }
+    
+    // Probar jugadores
+    try {
+      const jugadorService = container.get('JugadorService');
+      const jugadores = await jugadorService.getAll();
+      testResults.jugadores = { status: 'ok', count: jugadores.length };
+    } catch (error) {
+      testResults.jugadores = { status: 'error', error: error.message };
+    }
+    
+    // Probar partidos
+    try {
+      const partidoService = container.get('PartidoService');
+      const partidos = await partidoService.getAll();
+      testResults.partidos = { status: 'ok', count: partidos.length };
+    } catch (error) {
+      testResults.partidos = { status: 'error', error: error.message };
+    }
+    
+    res.json({
+      status: 'success',
+      timestamp: new Date().toISOString(),
+      testResults
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      error: error.message,
+      stack: error.stack
+    });
+  }
+});
+
 app.use('/api', routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

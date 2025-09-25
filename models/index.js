@@ -7,7 +7,13 @@ const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const allConfigs = require(__dirname + '/../config/config.js');
-const config = allConfigs[env];
+
+// Forzar configuración de producción si estamos en AWS
+let config = allConfigs[env];
+if (!config && (env === 'production' || process.env.DB_HOST && process.env.DB_HOST.includes('amazonaws.com'))) {
+  console.log('🔧 Forcing production config for AWS environment');
+  config = allConfigs.production;
+}
 const db = {};
 
 // Debug logs para AWS (solo en desarrollo)

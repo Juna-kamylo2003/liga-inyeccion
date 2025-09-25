@@ -1,5 +1,16 @@
 const { Container } = require('inversify');
-const models = require('../../models');
+console.log('📦 Inicializando container de dependencias...');
+
+let models;
+try {
+  console.log('📂 Importando modelos...');
+  models = require('../../models');
+  console.log('✅ Modelos importados exitosamente');
+} catch (error) {
+  console.error('❌ Error importando modelos:', error.message);
+  console.error('❌ Stack trace:', error.stack);
+  throw error;
+}
 
 // Repositories
 const LigaRepository = require('../repositories/liga.repository');
@@ -34,10 +45,14 @@ const UsuarioController = require('../controllers/usuario.controller');
 const container = new Container();
 
 function configureDependencies() {
-  // Liga
-  container.bind('LigaRepository').toConstantValue(new LigaRepository(models.Liga));
-  container.bind('LigaService').toDynamicValue(() => new LigaService(container.get('LigaRepository')));
-  container.bind('LigaController').toDynamicValue(() => new LigaController(container.get('LigaService')));
+  try {
+    console.log('⚙️ Configurando dependencias...');
+    
+    // Liga
+    console.log('📄 Configurando Liga...');
+    container.bind('LigaRepository').toConstantValue(new LigaRepository(models.Liga));
+    container.bind('LigaService').toDynamicValue(() => new LigaService(container.get('LigaRepository')));
+    container.bind('LigaController').toDynamicValue(() => new LigaController(container.get('LigaService')));
 
   // Temporada
   container.bind('TemporadaRepository').toConstantValue(new TemporadaRepository(models.Temporada));
@@ -70,12 +85,26 @@ function configureDependencies() {
   container.bind('TablaPosicioneController').toDynamicValue(() => new TablaPosicioneController(container.get('TablaPosicioneService')));
 
   // Usuario
+  console.log('👤 Configurando Usuario...');
   container.bind('UsuarioRepository').toConstantValue(new UsuarioRepository(models.Usuario));
   container.bind('UsuarioService').toDynamicValue(() => new UsuarioService(container.get('UsuarioRepository')));
   container.bind('UsuarioController').toDynamicValue(() => new UsuarioController(container.get('UsuarioService')));
+  
+  console.log('✅ Todas las dependencias configuradas exitosamente');
+} catch (error) {
+  console.error('❌ Error configurando dependencias:', error.message);
+  console.error('❌ Stack trace:', error.stack);
+  throw error;
+}
 }
 
 // Configurar dependencias
-configureDependencies();
+try {
+  configureDependencies();  
+  console.log('🎉 Container configurado completamente');
+} catch (error) {
+  console.error('💥 Error fatal configurando container:', error.message);
+  throw error;
+}
 
 module.exports = { container };

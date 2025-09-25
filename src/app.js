@@ -1,9 +1,22 @@
 const express = require('express');
-const { container } = require('./config/dependency-injection');
+console.log('🚀 Iniciando aplicación...');
+
+let container;
+try {
+  console.log('📦 Importando container...');
+  const dependencyInjection = require('./config/dependency-injection');
+  container = dependencyInjection.container;
+  console.log('✅ Container importado exitosamente');
+} catch (error) {
+  console.error('❌ Error importando container:', error.message);
+  console.error('❌ Stack trace:', error.stack);
+}
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
 
 const app = express();
+console.log('🌐 Express app creada');
 
 // Middleware
 app.use(express.json());
@@ -15,6 +28,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Routes
 const routes = require('./routes/index');
 app.use('/api', routes);
+
+// Simple test endpoint
+app.get('/test', (req, res) => {
+  console.log('🧪 Test endpoint llamado');
+  res.json({ message: 'App funcionando', timestamp: new Date().toISOString() });
+});
 
 // Health check
 app.get('/health', (req, res) => {

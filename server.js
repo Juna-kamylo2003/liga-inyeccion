@@ -3,12 +3,9 @@ console.log('Node version:', process.version);
 console.log('Environment:', process.env.NODE_ENV || 'development');
 
 try {
-  // Usar aplicación simple para debug
-  console.log('🔧 Loading simple app for debugging...');
-  require('./src/simple-app');
-  console.log('✅ Simple application started successfully');
+  require('./src/app');
+  console.log('Application started successfully');
 } catch (error) {
-  console.error('❌ Failed to start simple application:', error);
-  console.error('Stack:', error.stack);
+  console.error('Failed to start application:', error);
   process.exit(1);
 }

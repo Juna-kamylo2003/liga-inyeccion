@@ -38,3 +38,5 @@ API RESTful para la gestión de ligas, equipos, jugadores, partidos y resultados
    npm run dev
    ```
 5. Documentación Swagger disponible en `/api-docs`.
+"# Pipeline CD configurado correctamente - $(date)" 
+"# Sistema CI/CD completo implementado - $(date)" 

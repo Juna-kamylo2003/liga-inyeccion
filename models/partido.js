@@ -11,24 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // Un partido pertenece a una temporada
-      Partido.belongsTo(models.Temporada, { foreignKey: 'temporada_id' });
+      Partido.belongsTo(models.Temporada, { foreignKey: 'temporadaId' });
       // Un partido tiene un equipo local
-      Partido.belongsTo(models.Equipo, { foreignKey: 'equipo_local', as: 'EquipoLocal' });
+      Partido.belongsTo(models.Equipo, { foreignKey: 'equipoLocalId', as: 'EquipoLocal' });
       // Un partido tiene un equipo visitante
-      Partido.belongsTo(models.Equipo, { foreignKey: 'equipo_visitante', as: 'EquipoVisitante' });
+      Partido.belongsTo(models.Equipo, { foreignKey: 'equipoVisitanteId', as: 'EquipoVisitante' });
       // Un partido tiene un resultado
       Partido.hasOne(models.Resultado, { foreignKey: 'partido_id' });
     }
   }
   Partido.init({
     fecha: DataTypes.DATE,
-    equipo_local: DataTypes.INTEGER,
-    equipo_visitante: DataTypes.INTEGER,
-    temporada_id: DataTypes.INTEGER
+    equipoLocalId: DataTypes.INTEGER,
+    equipoVisitanteId: DataTypes.INTEGER,
+    temporadaId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Partido',
-    timestamps: false
+    tableName: 'Partidos',
+    timestamps: true
   });
   return Partido;
 };

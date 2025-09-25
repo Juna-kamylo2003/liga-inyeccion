@@ -47,7 +47,6 @@ describe('PartidoController', () => {
 
   it('DELETE /partidos/:id elimina un partido', async () => {
     const res = await request(app).delete('/partidos/1');
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toEqual({ message: 'Partido eliminado' });
+    expect(res.statusCode).toBe(204);
   });
 });

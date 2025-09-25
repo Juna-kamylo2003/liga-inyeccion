@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'TablaPosicione',
-    timestamps: false
+    timestamps: true
   });
   return TablaPosicione;
 };

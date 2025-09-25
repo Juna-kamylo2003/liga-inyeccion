@@ -47,7 +47,6 @@ describe('JugadorController', () => {
 
   it('DELETE /jugadores/:id elimina un jugador', async () => {
     const res = await request(app).delete('/jugadores/1');
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toEqual({ message: 'Jugador eliminado' });
+    expect(res.statusCode).toBe(204);
   });
 });

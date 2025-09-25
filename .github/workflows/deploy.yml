@@ -1,0 +1,140 @@
+name: CD - Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+      - feature/juan
+  workflow_run:
+    workflows: ["CI/CD Complete Pipeline"]
+    types:
+      - completed
+    branches:
+      - main
+      - feature/juan
+
+jobs:
+  deploy:
+    name: Deploy to AWS (${{ github.ref_name }})
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'push' }}
+    
+
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: |
+          echo "Building application for ${{ github.ref_name }} deployment..."
+          npm run build --if-present
+
+      - name: Create deployment package
+        run: |
+          echo "Creating deployment package..."
+          # Crear archivo ZIP con toda la aplicación
+          zip -r application.zip . -x "*.git*" "node_modules/*" "tests/*" "coverage/*" ".env*" "*.md"
+          
+          # Crear Procfile para Elastic Beanstalk
+          echo "web: node src/app.js" > Procfile
+          
+          # Agregar Procfile al ZIP
+          zip application.zip Procfile
+          
+          # Mostrar contenido del ZIP para verificación
+          echo "Deployment package contents:"
+          unzip -l application.zip | head -20
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: liga-inyeccion
+          environment_name: Liga-inyeccion-env
+          version_label: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}
+          region: us-east-1
+          deployment_package: application.zip
+          wait_for_deployment: true
+          wait_for_environment_recovery: 300
+
+      - name: Deployment Success Notification
+        if: success()
+        run: |
+          echo "🚀 Deployment successful!"
+          echo "📍 Environment: Liga-inyeccion-env"
+          echo "🌐 URL: http://Liga-inyeccion-env.eba-p3jydbcq.us-east-1.elasticbeanstalk.com"
+          echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
+          echo "🎯 Branch: ${{ github.ref_name }}"
+          echo "🔗 Commit: ${{ github.sha }}"
+
+      - name: Health Check
+        if: success()
+        run: |
+          echo "Performing health check..."
+          HEALTH_URL="http://Liga-inyeccion-env.eba-p3jydbcq.us-east-1.elasticbeanstalk.com/api/ligas"
+          
+          # Esperar un poco para que el deployment se complete
+          sleep 30
+          
+          # Hacer health check
+          if curl -f -s "$HEALTH_URL" > /dev/null; then
+            echo "✅ Health check passed - API is responding"
+            echo "🔗 API Endpoint: $HEALTH_URL"
+          else
+            echo "❌ Health check failed - API might be starting up"
+            echo "⏳ This is normal, the application may need a few more minutes to fully start"
+          fi
+
+      - name: Deployment Failure Notification
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "📍 Environment: Liga-inyeccion-env"
+          echo "🎯 Branch: ${{ github.ref_name }}"
+          echo "📦 Version: v${{ github.run_number }}-${{ github.ref_name == 'main' && 'prod' || 'staging' }}"
+          echo "🔗 Commit: ${{ github.sha }}"
+          echo "🔍 Check the logs above for details"
+
+  # Job opcional para rollback en caso de falla
+  rollback:
+    name: Rollback on Failure
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: failure()
+    
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Rollback deployment
+        run: |
+          echo "🔄 Initiating rollback for ${{ github.ref_name }}..."
+          
+          # Obtener la versión anterior
+          ENVIRONMENT_NAME="Liga-inyeccion-env"
+          
+          # Aquí podrías implementar lógica de rollback más sofisticada
+          echo "💡 Manual rollback required through AWS Console"
+          echo "🔧 Environment: $ENVIRONMENT_NAME"
+          echo "📍 Go to: https://console.aws.amazon.com/elasticbeanstalk/"

@@ -6,14 +6,48 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
+const allConfigs = require(__dirname + '/../config/config.js');
+
+// Forzar configuración de producción si estamos en AWS
+let config = allConfigs[env];
+if (!config && (env === 'production' || process.env.DB_HOST && process.env.DB_HOST.includes('amazonaws.com'))) {
+  console.log('🔧 Forcing production config for AWS environment');
+  config = allConfigs.production;
+}
 const db = {};
 
+// Debug logs para AWS (solo en desarrollo)
+if (env !== 'test' && config) {
+  console.log('=== DATABASE CONFIG DEBUG ===');
+  console.log('NODE_ENV:', env);
+  console.log('Available configs:', Object.keys(allConfigs));
+  console.log('Using config:', {
+    username: config.username,
+    database: config.database,
+    host: config.host,
+    dialect: config.dialect
+  });
+  console.log('Environment variables:');
+  console.log('DB_USER:', process.env.DB_USER);
+  console.log('DB_NAME:', process.env.DB_NAME);
+  console.log('DB_HOST:', process.env.DB_HOST);
+  console.log('============================');
+}
+
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+if (config) {
+  if (config.use_env_variable) {
+    sequelize = new Sequelize(process.env[config.use_env_variable], config);
+  } else {
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
+  }
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  // Fallback config for tests
+  sequelize = new Sequelize('ligas_db_test', 'root', '', {
+    host: '127.0.0.1',
+    dialect: 'mariadb',
+    logging: false
+  });
 }
 
 fs

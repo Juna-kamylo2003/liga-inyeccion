@@ -1,0 +1,10 @@
+node_modules/
+coverage/
+.vscode/
+.git/
+*.log
+*.zip
+.env
+tests/
+README.md
+.github/

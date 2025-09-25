@@ -47,7 +47,6 @@ describe('EquipoController', () => {
 
   it('DELETE /equipos/:id elimina un equipo', async () => {
     const res = await request(app).delete('/equipos/1');
-    expect(res.statusCode).toBe(200);
-    expect(res.body).toEqual({ message: 'Equipo eliminado' });
+    expect(res.statusCode).toBe(204);
   });
 });

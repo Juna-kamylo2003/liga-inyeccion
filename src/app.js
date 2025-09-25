@@ -1,5 +1,5 @@
 const express = require('express');
-const container = require('./config/dependency-injection');
+const { container } = require('./config/dependency-injection');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger/swagger.json');
 

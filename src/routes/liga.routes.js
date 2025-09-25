@@ -4,6 +4,9 @@ const { container } = require('../config/dependency-injection');
 
 router.get('/', async (req, res) => {
   try {
+    console.log('🔍 Liga GET / - Iniciando...');
+    console.log('🔍 Liga GET / - Container disponible:', !!container);
+    console.log('🔍 Liga GET / - Tipo de container:', typeof container);
     console.log('🔍 Liga GET / - Intentando resolver LigaController...');
     const controller = container.get('LigaController');
     console.log('✅ Liga GET / - Controller resuelto:', !!controller);

@@ -78,4 +78,4 @@ function configureDependencies() {
 // Configurar dependencias
 configureDependencies();
 
-module.exports = container;
+module.exports = { container };

@@ -1,7 +1,8 @@
 const express = require('express');
 const { container } = require('./config/dependency-injection');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger/swagger.json');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerDef = require('../swagger/swaggerDef');
 
 const app = express();
 
@@ -9,8 +10,24 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Swagger documentation
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Swagger documentation - Configuración dinámica
+const swaggerOptions = {
+  definition: swaggerDef,
+  apis: ['./swagger/*.swagger.js'], // rutas a los archivos de definición de swagger
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Endpoint para verificar la configuración de Swagger
+app.get('/swagger-config', (req, res) => {
+  res.json({
+    environment: process.env.NODE_ENV || 'development',
+    serverUrl: swaggerDef.servers[0].url,
+    isAWS: !!(process.env.DB_HOST?.includes('amazonaws.com')),
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Routes
 const routes = require('./routes/index');

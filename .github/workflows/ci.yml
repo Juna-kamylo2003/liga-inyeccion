@@ -30,8 +30,8 @@ jobs:
             db_password: test_password
 
     services:
-      mariadb:
-        image: mariadb:10.5
+      mysql:
+        image: mysql:8.0
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: ${{ matrix.db_name }}
@@ -53,13 +53,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Wait for MariaDB
+      - name: Wait for MySQL
         run: |
           for i in {30..0}; do
-            if mysqladmin ping -h127.0.0.1 -P3306 -u${{ matrix.db_user }} -p${{ matrix.db_password }} --silent; then
+            if mysqladmin ping -h127.0.0.1 -P3306 -uroot -proot --silent; then
               break
             fi
-            echo 'MariaDB is unavailable - sleeping'
+            echo 'MySQL is unavailable - sleeping'
             sleep 1
           done
 
@@ -72,14 +72,15 @@ jobs:
           DB_NAME: ${{ matrix.db_name }}
           DB_USERNAME: ${{ matrix.db_user }}
           DB_PASSWORD: ${{ matrix.db_password }}
-          DB_DIALECT: mariadb
+          DB_DIALECT: mysql
+          CI: true
 
       - name: Check database tables
         run: |
           echo "Checking if tables were created in ${{ matrix.db_name }}..."
-          mysql -h127.0.0.1 -P3306 -u${{ matrix.db_user }} -p${{ matrix.db_password }} ${{ matrix.db_name }} -e "SHOW TABLES;"
+          mysql -h127.0.0.1 -P3306 -uroot -proot ${{ matrix.db_name }} -e "SHOW TABLES;"
           echo "Checking Usuario table structure..."
-          mysql -h127.0.0.1 -P3306 -u${{ matrix.db_user }} -p${{ matrix.db_password }} ${{ matrix.db_name }} -e "DESCRIBE Usuarios;" || echo "Usuarios table does not exist"
+          mysql -h127.0.0.1 -P3306 -uroot -proot ${{ matrix.db_name }} -e "DESCRIBE Usuarios;" || echo "Usuarios table does not exist"
 
       - name: Run tests
         run: npm test
@@ -90,7 +91,8 @@ jobs:
           DB_NAME: ${{ matrix.db_name }}
           DB_USERNAME: ${{ matrix.db_user }}
           DB_PASSWORD: ${{ matrix.db_password }}
-          DB_DIALECT: mariadb
+          DB_DIALECT: mysql
+          CI: true
 
   deploy-check:
     name: Verify deployment readiness

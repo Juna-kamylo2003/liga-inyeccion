@@ -33,21 +33,21 @@ if (isAWS) {
 
 const configs = {
   development: {
-    username: "root",
-    password: "",
+    username: process.env.CI ? "root" : "root",
+    password: process.env.CI ? "root" : "",
     database: "ligas_db",
     host: "127.0.0.1",
     port: 3306,
-    dialect: "mariadb",
+    dialect: process.env.CI ? "mysql" : "mariadb",
     logging: false
   },
   test: {
     username: "root",
-    password: "",
+    password: process.env.CI ? "root" : "",
     database: "ligas_db_test",
     host: "127.0.0.1",
     port: 3306,
-    dialect: "mariadb",
+    dialect: process.env.CI ? "mysql" : "mariadb",
     logging: false
   },
   production: {

@@ -25,6 +25,34 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Debug endpoint temporal
+app.get('/debug-container', (req, res) => {
+  try {
+    const ligaController = container.get('LigaController');
+    res.json({
+      success: true,
+      containerWorking: !!ligaController,
+      environment: process.env.NODE_ENV,
+      dbConfig: {
+        host: process.env.DB_HOST,
+        name: process.env.DB_NAME,
+        user: process.env.DB_USER
+      }
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      error: error.message,
+      environment: process.env.NODE_ENV,
+      dbConfig: {
+        host: process.env.DB_HOST,
+        name: process.env.DB_NAME,
+        user: process.env.DB_USER
+      }
+    });
+  }
+});
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({

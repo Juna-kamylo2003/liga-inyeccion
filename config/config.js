@@ -33,7 +33,7 @@ if (isAWS) {
 
 const configs = {
   development: {
-    username: process.env.CI ? "root" : "root",
+    username: "root",
     password: process.env.CI ? "root" : "",
     database: "ligas_db",
     host: "127.0.0.1",
@@ -73,33 +73,28 @@ const configs = {
   }
 };
 
-// Si detectamos AWS, forzar TODO a usar configuración de producción
-if (isAWS) {
-  if (process.env.NODE_ENV !== 'test') {
+// Debug de configuración final
+if (process.env.NODE_ENV !== 'test') {
+  if (isAWS) {
     console.log('🔧 AWS Production Config Applied:');
     console.log('- Host:', configs.production.host);
     console.log('- User:', configs.production.username);
     console.log('- Database:', configs.production.database);
     console.log('- Port:', configs.production.port);
+    console.log('📋 All environments forced to production config');
+  } else {
+    console.log('📋 Using standard multi-environment config');
   }
-  
-  // Forzar TODAS las configuraciones a usar production
-  const forcedConfig = {
+  console.log('==================');
+}
+
+// Si detectamos AWS, forzar TODO a usar configuración de producción
+if (isAWS) {
+  module.exports = {
     development: { ...configs.production },
     test: { ...configs.production },
     production: { ...configs.production }
   };
-  
-  if (process.env.NODE_ENV !== 'test') {
-    console.log('📋 All environments forced to production config');
-    console.log('==================');
-  }
-  
-  module.exports = forcedConfig;
 } else {
-  if (process.env.NODE_ENV !== 'test') {
-    console.log('📋 Using standard multi-environment config');
-    console.log('==================');
-  }
   module.exports = configs;
 }

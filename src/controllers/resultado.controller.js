@@ -23,17 +23,17 @@ class ResultadoController {
   }
 
   async create(req, res) {
-    try {
-      const data = await this.resultadoService.create(req.body);
-      res.status(201).json(data);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
+  try {
+    const data = await this.resultadoService.createResultado(req.body); // ✅ nombre correcto
+    res.status(201).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
+}
 
   async update(req, res) {
     try {
-      const data = await this.resultadoService.update(req.params.id, req.body);
+      const data = await this.resultadoService.updateResultado(req.params.id, req.body);
       if (!data) return res.status(404).json({ error: 'No encontrado' });
       res.json(data);
     } catch (err) {
